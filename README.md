@@ -5,11 +5,19 @@ Pipe data in a command-line chain through a program meant to read stdin and writ
 Example:
 
 ```bash
-# valid code
-$ echo 'print "hello"' | try python
+$ export code='print "hello"'
+
+$ echo $code | python2
 hello
 
-# invalid code (missing close-quote)
-$ echo 'print "hello' | try python
-print "hello
+$ echo $code | python3
+  File "<stdin>", line 1
+    print "hello"
+                ^
+SyntaxError: Missing parentheses in call to 'print'
 
+$ echo $code | try python2
+hello
+$ echo $code | try python3
+print "hello"
+```
