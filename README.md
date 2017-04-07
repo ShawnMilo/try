@@ -10,6 +10,6 @@ $ echo 'print "hello"' | try python
 hello
 
 # invalid code (missing close-quote)
-echo 'print "hello' | try python
+$ echo 'print "hello' | try python
 print "hello
 
