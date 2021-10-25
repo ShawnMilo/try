@@ -1,11 +1,13 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
+	"time"
 )
 
 func main() {
@@ -36,7 +38,9 @@ func main() {
 		fmt.Print(input)
 	}()
 
-	cmd := exec.Command(app)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
+	defer cancel()
+	cmd := exec.CommandContext(ctx, app)
 	stdin, err := cmd.StdinPipe()
 	if err != nil {
 		return
