@@ -38,7 +38,7 @@ func main() {
 		fmt.Print(input)
 	}()
 
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*2)
 	defer cancel()
 	cmd := exec.CommandContext(ctx, app)
 	stdin, err := cmd.StdinPipe()

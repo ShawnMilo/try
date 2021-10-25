@@ -21,3 +21,7 @@ hello
 $ echo $code | try python3
 print "hello"
 ```
+
+---
+
+A built-in timeout will abort execution of the tried program if it takes over two seconds. This program is meant to be used for text filters (sort, grep, goimports, shawnmilo/shortcuts, etc.), so it should never take more than a fraction of a second. If one of those programs freezes (something I'm experiencing with goimports a lot recently with certain input), then this won't freeze vim, or whatever you're using.
