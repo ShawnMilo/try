@@ -22,7 +22,7 @@ func main() {
 		log.Fatal("Please pass in a program name.")
 		return
 	}
-	app := os.Args[1]
+	app := os.Args[1:]
 
 	raw, err := ioutil.ReadAll(os.Stdin)
 	if err != nil {
@@ -40,7 +40,7 @@ func main() {
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*2)
 	defer cancel()
-	cmd := exec.CommandContext(ctx, app)
+	cmd := exec.CommandContext(ctx, app[0], app[1:]...)
 	stdin, err := cmd.StdinPipe()
 	if err != nil {
 		return
